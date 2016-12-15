@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <!--
+  	作者：Claire
+  	时间：2016-12-15
+  	描述：插入排序，使用javascript语言
+  -->
+	<head>
+		<meta charset="UTF-8">
+		<title>插入排序</title>
+	</head>
+	<script>
+	window.onload = function(){
+		var arry = [23,12,22,56,43,55];
+        original.innerHTML = "   "+arry.toString();
+        
+        Insertsort(arry);
+        now.innerHTML = "   "+arry.toString();
+	}
+		function Insertsort(arry){
+			for (var i = 1 ; i<arry.length;i++) {
+				var flage = arry[i];//需要插入并排序的元素
+				
+				var j = i-1;//获取flage前一个元素index
+				while(j>=0&&arry[j]>flage){//比较元素和flage
+					arry[j+1] = arry[j];//如果满足while的条件，前一个元素推到后一个元素
+					j = j - 1;//换下标
+					
+				}
+				arry[j+1] = flage;//最后把flage放到一个合适的位置
+			}
+		}
+	</script>
+	<body>
+		<p><label>原来数组</label><label id="original"></label></p>
+		<p><label>现在的数组</label><label id="now"></label></p>
+	</body>
+</html>
