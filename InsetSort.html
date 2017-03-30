@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript" src="js/common/getRandomArry.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		//let arry = [1,5,4,9,8,3];
+		let arry = random(1,100000,10000);
+		
+	/*方法一，不停的交换位置
+	console.time("InsertSort");
+		for(let i = 1; i < arry.length; i++){
+
+			for(let j = i; j > 0; j--){
+				if(arry[j]>arry[j-1]){
+					let temp = arry[j];
+					arry[j] = arry[j-1];
+					arry[j-1] = temp;
+			
+				}else{
+					break;
+				}
+			}
+		}
+	console.timeEnd("InsertSort");*/
+	//方法二，优化插入排序算法
+		//console.log(arry);
+		console.time("insertsort1");
+		for(let i = 1; i <arry.length; i++){
+			let num = arry[i];
+			let j = i - 1;
+
+			for(; j >= 0 && arry[j] > num; j--){				
+					arry[j+1] = arry[j];
+			}
+
+			arry[j+1] = num;
+		}
+		console.log(arry);
+		console.timeEnd("insertsort1");
+
+		/*let arry2 = random(1,100000,10000);
+		console.time("insertsort2");
+		for( let i = 1; i < arry2.length; i++ ){
+
+			let num = arry2[i];
+			let j = i - 1;
+			while( arry2[j] > num && j >= 0 ){
+				arry2[j+1] = arry2[j];
+				j--;
+			}
+
+			arry2[j+1] = num;
+
+
+
+		}
+
+		console.timeEnd("insertsort2");*/
+		console.log(arry);
+	}
+</script>
+<body>
+	
+</body>
+</html>

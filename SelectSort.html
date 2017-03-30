@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/common/getRandomArry.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			//var arr = ["123","333","123","asdf","gdg","kk"];
+			/*var arr = [
+				{ a:12,b:22 },
+				{ a:44,b:23 },
+				{ a:"aa",b:56 },
+				{ a:88,b:77 },
+
+			]*/
+			//SelectSort(null);
+			//alert(typeof undefined);
+
+			let arr = random(1,10000,10000);
+			function SelectSort( arr ){
+				console.time("selectsort")
+				//alert(Object.prototype.toString.apply({}));
+				if(Object.prototype.toString.apply(arr) === "[object Array]"){
+					for(let i = 0; i < arr.length; i++){
+
+						let MinInt = i;
+						let temp = null;
+						for(let j = i + 1; j < arr.length; j++){
+
+							if( arr[j] < arr[MinInt]){
+								MinInt = j;
+							}
+						}
+
+						if( i !== MinInt){
+							temp = arr[MinInt];
+							arr[MinInt] = arr[i];
+							arr[i] = temp;
+						}
+
+					}
+				}
+					
+					
+					console.timeEnd("selectsort");
+			}
+
+			
+			
+			SelectSort(arr);
+		
+			console.log(arr);
+			
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
