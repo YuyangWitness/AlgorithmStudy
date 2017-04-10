@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/common/getRandomArry.js"></script>
+	<script type="text/javascript">
+
+		
+		let arry = random(1,10000,1000);
+		function splitArray(arry,left,right){
+		  
+			if(left >= right){
+				return ;
+			}else{
+				let mid = parseInt((left+right)/2);
+				splitArray(arry,left,mid);
+				splitArray(arry,mid+1,right)
+				MergeSort(arry,left,mid,right);
+					
+			}
+			
+		}
+		function MergeSort(arry,left,mid,right){
+
+			let axu = [];
+			for(let i = left; i <= right; i++){
+				axu[i] = arry[i];
+			}
+			let x = left;
+			let y = mid + 1;
+			for(let i = left; i <= right; i++){
+				if(x <= mid && y <= right){
+					if(arry[x] <= arry[y]){
+						axu[i] = arry[x];
+						x++;
+					}else{
+						axu[i] = arry[y];
+						y++;
+					}
+				}else if(x > mid){
+					axu[i] = arry[y];
+					y++;
+				}else if(y > right){
+					axu[i] = arry[x];
+					x++;
+				}
+
+			}
+
+			for(let i = left; i <= right; i++){
+				arry[i] = axu[i];
+			}
+		}
+		console.time("MergeSort");
+		splitArray(arry,0,arry.length-1);
+		console.timeEnd("MergeSort");
+		console.log(arry);
+	</script>
+</head>
+<body>
+</body>
+</html>
