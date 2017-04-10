@@ -7,18 +7,42 @@
 	<script type="text/javascript">
 
 		
-		let arry = random(1,10000,1000);
+		//let arry = random(1,10000,1000);
+		let arry = [1,6,7,3,4,45,1,2,4,5,56,12,4,4,8567,312,13,4,89,3,12,5,56,1];
+		
+		function insertSort(arry,left,right){
+			for(let i = left + 1; i <= right; i++){
+				let temp = arry[i];
+				let j = i - 1;
+				for(; j >= left && temp < arry[j]; j--){
+					arry[j+1] = arry[j];
+				}
+
+				if(i != j){
+					arry[j+1] = temp;
+				}
+			}
+		}
 		function splitArray(arry,left,right){
-		  
-			if(left >= right){
+		  	//优化二：当排序个数足够小的时候，插入排序比归并排序快一些。
+			/*if(left >= right){
 				return ;
-			}else{
+			}*/
+			if(right - left <= 15){
+
+				insertSort(arry,left,right);
+				return;
+			}
 				let mid = parseInt((left+right)/2);
 				splitArray(arry,left,mid);
 				splitArray(arry,mid+1,right)
-				MergeSort(arry,left,mid,right);
+				//优化一：当arry[mid] <= arry[mid+1] 的时候说明排序已经完成，可以不必进入
+				if( arry[mid] > arry[mid +1] ){
+					MergeSort(arry,left,mid,right);
+				}
+				
 					
-			}
+			
 			
 		}
 		function MergeSort(arry,left,mid,right){
