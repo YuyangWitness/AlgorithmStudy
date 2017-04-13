@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/common/getRandomArry.js"></script>
+	<script type="text/javascript">
+		//let arry = [4,8,1,3,5,8,33,66,11,2,8,12,34,2,8];
+		let arry = random(1,1000000,100000);
+
+		console.time("QuickSort");
+		partition(arry,0,arry.length);
+		console.timeEnd("QuickSort");
+
+		console.log(arry);
+
+		function partition(arry,left,right){
+			if(right - left < 1){
+				return;
+			}
+
+			let split = QuickSort(arry,left,right);
+
+			partition(arry,left,split);
+			partition(arry,split+1,right);
+			
+		}
+
+
+		function QuickSort(arry,left,right){
+			let j = left, l = left;
+			let i = left + 1
+			for(; i < right; i++){
+				if(arry[l] >= arry[i] && j++ !== i){
+
+					[arry[j],arry[i]] = [arry[i],arry[j]];
+				}
+			}
+
+			[arry[j],arry[l]] = [arry[l],arry[j]];
+			//console.log(arry);
+			return j;
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
